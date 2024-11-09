@@ -3,32 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
+    <title>Know Your Stock</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: hsl(240, 10%, 3.9%);
-            color: hsl(0, 0%, 98%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: hsl(240 10% 3.9%);
+            color: hsl(0 0% 98%);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            line-height: 1.6;
         }
 
         .header {
-            padding: 1rem;
+            padding: 1rem 1.5rem;
             display: flex;
             align-items: center;
+            background: hsl(240 10% 3.9%);
+            border-bottom: 1px solid hsl(240 3.7% 15.9%);
         }
 
         .logo {
             font-size: 1.5rem;
-            font-weight: bold;
-            color: hsl(0, 0%, 98%);
+            font-weight: 600;
+            color: hsl(0 0% 98%);
             text-decoration: none;
             opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
+            animation: slideDown 0.8s ease-out forwards;
+            letter-spacing: -0.5px;
         }
 
         .main {
@@ -36,23 +40,52 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 2rem;
+        }
+
+        .content-wrapper {
             text-align: center;
+            max-width: 800px;
+            padding: 3rem;
+            background: hsl(240 10% 5.9%);
+            border-radius: 12px;
+            border: 1px solid hsl(240 3.7% 15.9%);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            animation: fadeIn 1s ease-out forwards;
         }
 
         .coming-soon {
-            font-size: 2rem;
-            font-weight: bold;
-            max-width: 600px;
-            padding: 0 1rem;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: hsl(0 0% 98%);
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: hsl(240 5% 64.9%);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
         }
 
         .typing-text {
-            border-right: 0.15em solid hsl(0, 0%, 98%);
-            white-space: nowrap;
-            overflow: hidden;
-            margin: 0 auto;
-            letter-spacing: 0.15em;
-            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+            display: inline-block;
+            border-right: 2px solid hsl(0 0% 98%);
+            padding-right: 5px;
+            animation: blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes fadeIn {
@@ -60,48 +93,71 @@
             to { opacity: 1; }
         }
 
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
         @keyframes blink-caret {
             from, to { border-color: transparent }
-            50% { border-color: hsl(0, 0%, 98%); }
+            50% { border-color: #ffffff }
         }
 
-        @media (max-width: 640px) {
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj4KICA8ZmlsdGVyIGlkPSJub2lzZSIgeD0iMCIgeT0iMCI+CiAgICA8ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC42NSIgbnVtT2N0YXZlcz0iMyIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPgogIDwvZmlsdGVyPgogIDxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWx0ZXI9InVybCgjbm9pc2UpIiBvcGFjaXR5PSIwLjA1Ii8+Cjwvc3ZnPg==');
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 1.5rem 2rem;
+            }
+
+            .content-wrapper {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
             .coming-soon {
-                font-size: 1.5rem;
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
             }
         }
     </style>
 </head>
 <body>
     <header class="header">
-        <a href="#" class="logo">Logo</a>
+        <a href="#" class="logo">Know Your Stock</a>
     </header>
     <main class="main">
-        <h1 class="coming-soon">
-            <span class="typing-text"></span>
-        </h1>
+        <div class="content-wrapper">
+            <h1 class="coming-soon">
+                <span class="typing-text"></span>
+            </h1>
+            <p class="subtitle">Stay tuned for something amazing</p>
+        </div>
     </main>
 
     <script>
-        const text = "Currently under construction. Coming soon!";
+        const text = "Currently under construction";
         const typingText = document.querySelector('.typing-text');
         let i = 0;
 
         function typeWriter() {
             if (i < text.length) {
-                typingText.innerHTML += text.charAt(i);
+                typingText.textContent += text.charAt(i);
                 i++;
-                setTimeout(typeWriter, 50);
+                setTimeout(typeWriter, 100);
             }
         }
 
-        // Start the typing animation after a short delay
-        setTimeout(typeWriter, 1000);
+        // Start typing animation after a short delay
+        setTimeout(typeWriter, 800);
     </script>
 </body>
 </html>
